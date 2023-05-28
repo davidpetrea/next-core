@@ -39,16 +39,19 @@ export interface Database {
           created_at: string | null;
           id: number;
           name: string;
+          avatar_url: string;
         };
         Insert: {
           created_at?: string | null;
           id?: number;
           name: string;
+          avatar_url?: string;
         };
         Update: {
           created_at?: string | null;
           id?: number;
           name?: string;
+          avatar_url?: string;
         };
       };
     };

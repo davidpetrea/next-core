@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 export default async function Home() {
   //TODO:logged in/out separeate views
   return (

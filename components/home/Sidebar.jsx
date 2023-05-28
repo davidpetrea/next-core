@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import SignOutButton from './SignOutButton';
 
 const Sidebar = () => {
   return (
@@ -22,6 +23,9 @@ const Sidebar = () => {
       </ul>
       <div className='my-8'>
         <div className='px-4'>Theme button</div>
+        <div className='px-4 mt-2'>
+          <SignOutButton />
+        </div>
       </div>
     </nav>
   );

@@ -31,6 +31,8 @@ const RegisterForm = () => {
   const supabase = createClientComponentClient<Database>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setVerificationMessage('');
+    setErrorMessage('');
     const { email, password, name } = data;
     const { data: signUpData, error } = await supabase.auth.signUp({
       email,

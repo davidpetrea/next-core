@@ -23,6 +23,7 @@ export default async function RootLayout({
       <main className='flex grow'>
         <Sidebar />
         <div className='flex flex-col flex-grow shrink-0'>
+          {/* @ts-expect-error Async Server Component */}
           <Header />
           <div className='bg-neutral-900 grow'>{children}</div>
         </div>

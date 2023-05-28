@@ -48,6 +48,7 @@ const LoginForm = () => {
       }
     } else {
       router.push('/');
+      router.refresh();
     }
   };
 
