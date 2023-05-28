@@ -44,7 +44,7 @@ export default async function Header() {
         {currentUser && currentUser?.length > 0 && (
           <div className='flex items-center gap-2'>
             <div>{currentUser[0].name}</div>
-            <div>
+            <span className='rounded-full transition-color duration-150 text-black font-semibold'>
               <Image
                 src={currentUser[0].avatar_url}
                 className='rounded-full'
@@ -52,7 +52,7 @@ export default async function Header() {
                 height={40}
                 alt='Avatar'
               />
-            </div>
+            </span>
           </div>
         )}
       </div>
@@ -60,7 +60,11 @@ export default async function Header() {
   }
 
   return (
-    <header className='bg-neutral-800 px-8 py-4 flex justify-between items-center gap-4 sticky top-0'>
+    <header
+      className={`bg-neutral-800 px-8 ${
+        data.session ? 'py-3' : 'py-4'
+      } flex justify-between items-center gap-4 sticky top-0`}
+    >
       <div>Home</div>
       {authPanel}
     </header>

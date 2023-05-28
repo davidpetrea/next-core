@@ -1,8 +1,14 @@
+import { cookies } from 'next/headers';
 import Link from 'next/link';
 import React from 'react';
 import SignOutButton from './SignOutButton';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Database } from '@/lib/schema';
 
-const Sidebar = () => {
+export default async function Sidebar() {
+  const supabase = createServerComponentClient<Database>({ cookies });
+  const { data } = await supabase.auth.getSession();
+
   return (
     <nav className='w-[16rem] shrink-0 flex flex-col max-h-screen sticky top-0'>
       <div className='my-6 px-6 text-xl'>Next Core</div>
@@ -23,12 +29,12 @@ const Sidebar = () => {
       </ul>
       <div className='my-8'>
         <div className='px-4'>Theme button</div>
-        <div className='px-4 mt-2'>
-          <SignOutButton />
-        </div>
+        {data.session && (
+          <div className='px-4 mt-2'>
+            <SignOutButton />
+          </div>
+        )}
       </div>
     </nav>
   );
-};
-
-export default Sidebar;
+}

@@ -21,6 +21,7 @@ export default async function RootLayout({
   return (
     <div className='flex flex-col min-h-screen'>
       <main className='flex grow'>
+        {/* @ts-expect-error Async Server Component */}
         <Sidebar />
         <div className='flex flex-col flex-grow shrink-0'>
           {/* @ts-expect-error Async Server Component */}

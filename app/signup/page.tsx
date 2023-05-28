@@ -3,6 +3,7 @@ import RegisterForm from '@/components/register/RegisterForm';
 import { Database } from '@/lib/schema';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { redirect } from 'next/navigation';
+import DiscordLoginButton from '@/components/login/DiscordLoginButton';
 
 export const metadata = {
   title: 'Sign up | Next Core',
@@ -26,9 +27,7 @@ export default async function Register() {
       </h2>
       {/* Auth providers */}
       <div className='flex flex-col items-center gap-2 w-full max-w-[24rem]'>
-        <button className='border-gray-100 border rounded-full py-3 w-full'>
-          Sign up with Discord
-        </button>
+        <DiscordLoginButton />
         <button className='border-gray-100 border rounded-full py-3 w-full'>
           Sign up with Github
         </button>{' '}
