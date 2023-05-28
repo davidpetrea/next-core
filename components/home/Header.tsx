@@ -47,7 +47,7 @@ export default async function Header() {
             <span className='rounded-full transition-color duration-150 text-black font-semibold'>
               <Image
                 src={currentUser[0].avatar_url}
-                className='rounded-full'
+                className='rounded-full shadow-dp04'
                 width={40}
                 height={40}
                 alt='Avatar'
