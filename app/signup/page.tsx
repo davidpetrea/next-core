@@ -24,6 +24,7 @@ export default async function Register() {
       <h2 className='text-3xl mb-8 font-bold text-center'>
         Sign up for free today.
       </h2>
+      {/* Auth providers */}
       <div className='flex flex-col items-center gap-2 w-full max-w-[24rem]'>
         <button className='border-gray-100 border rounded-full py-3 w-full'>
           Sign up with Discord

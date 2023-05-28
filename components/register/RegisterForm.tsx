@@ -2,13 +2,12 @@
 
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from '../common/TextField';
+import TextField from '@/components/common/TextField';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterSchema } from 'utils/schemas';
 import Link from 'next/link';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '@/lib/schema';
-import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 
 interface FormValues {
@@ -32,7 +31,6 @@ const RegisterForm = () => {
   const supabase = createClientComponentClient<Database>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
     const { email, password, name } = data;
     const { data: signUpData, error } = await supabase.auth.signUp({
       email,
@@ -45,7 +43,6 @@ const RegisterForm = () => {
       },
     });
     if (error) {
-      console.log('err?', error);
       setErrorMessage('Something went wrong. Please try again later.');
     } else {
       if (signUpData?.user?.identities?.length === 0) {
@@ -60,7 +57,6 @@ const RegisterForm = () => {
         );
       }
     }
-    //display some verification msg
   };
 
   return (
@@ -110,7 +106,7 @@ const RegisterForm = () => {
       >
         Sign up
       </button>
-      <p className='text-center text-sm'>
+      <p className='text-center text-sm mt-8'>
         Already have an account?{' '}
         <Link href='/login' className='text-orange underline'>
           Log in.
