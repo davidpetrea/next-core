@@ -4,7 +4,7 @@ import { Rubik } from 'next/font/google';
 const inter = Rubik({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Login | Next Core',
+  title: 'Next Core',
   description: 'The Next Core chatting experience.',
 };
 

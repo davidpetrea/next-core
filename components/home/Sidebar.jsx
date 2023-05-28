@@ -3,8 +3,8 @@ import React from 'react';
 
 const Sidebar = () => {
   return (
-    <nav className='w-[16rem] shrink-0 pt-6 flex flex-col max-h-screen'>
-      <div className='mb-6 px-6 text-xl'>Next Core</div>
+    <nav className='w-[16rem] shrink-0 flex flex-col max-h-screen sticky top-0'>
+      <div className='my-6 px-6 text-xl'>Next Core</div>
       <ul>
         <li className='px-2 '>
           <Link href='/' className='flex hover:text-orange'>
