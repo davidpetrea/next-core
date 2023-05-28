@@ -1,26 +1,83 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import TextField from '../common/TextField';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterSchema } from 'utils/schemas';
 import Link from 'next/link';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Database } from '@/lib/schema';
+import { useRouter } from 'next/navigation';
+import type { SubmitHandler } from 'react-hook-form';
+
+interface FormValues {
+  email: string;
+  password: string;
+  name: string;
+}
 
 const RegisterForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     resolver: zodResolver(RegisterSchema),
   });
 
+  const [errorMessage, setErrorMessage] = useState('');
+  const [verificationMessage, setVerificationMessage] = useState('');
+
+  const supabase = createClientComponentClient<Database>();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    console.log(data);
+    const { email, password, name } = data;
+    const { data: signUpData, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${location.origin}/auth/callback`,
+        data: {
+          name,
+        },
+      },
+    });
+    if (error) {
+      console.log('err?', error);
+      setErrorMessage('Something went wrong. Please try again later.');
+    } else {
+      if (signUpData?.user?.identities?.length === 0) {
+        setErrorMessage(
+          'This email is already used. Log in or use a different email to sign up.'
+        );
+        setVerificationMessage('');
+      } else {
+        setErrorMessage('');
+        setVerificationMessage(
+          'A verification link has been sent to your email address.'
+        );
+      }
+    }
+    //display some verification msg
+  };
+
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit(onSubmit)}
       className='flex flex-col gap-2 w-full max-w-[24rem]'
     >
+      {verificationMessage && (
+        <div className='text-sm text-green bg-neutral-900 border border-green rounded-md p-4'>
+          {verificationMessage}
+        </div>
+      )}
+      {errorMessage && (
+        <div className='text-sm text-amaranth bg-neutral-900 border border-amaranth rounded-md p-4'>
+          {errorMessage}
+        </div>
+      )}
       <TextField
         inputProps={{ ...register('email') }}
         id='email'
