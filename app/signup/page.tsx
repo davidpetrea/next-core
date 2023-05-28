@@ -4,6 +4,8 @@ import { Database } from '@/lib/schema';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { redirect } from 'next/navigation';
 import DiscordLoginButton from '@/components/login/DiscordLoginButton';
+import GithubLoginButton from '@/components/login/GithubLoginButton';
+import GoogleLoginButton from '@/components/login/GoogleLoginButton';
 
 export const metadata = {
   title: 'Sign up | Next Core',
@@ -28,12 +30,8 @@ export default async function Register() {
       {/* Auth providers */}
       <div className='flex flex-col items-center gap-2 w-full max-w-[24rem]'>
         <DiscordLoginButton />
-        <button className='border-gray-100 border rounded-full py-3 w-full'>
-          Sign up with Github
-        </button>{' '}
-        <button className='border-gray-100 border rounded-full py-3 w-full'>
-          Sign up with Google
-        </button>
+        <GithubLoginButton />
+        <GoogleLoginButton />
       </div>
       <span className='before:table-cell after:table-cell mb-4 before:w-[42%] after:w-[42%] before:border-t before:border-green relative before:relative after:relative before:top-[0.8rem] after:top-[0.8rem] after:border-t after:border-seablue w-full max-w-[24rem] table text-center'>
         or

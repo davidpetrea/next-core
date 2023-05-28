@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation';
 import LoginForm from '@/components/login/LoginForm';
 import Link from 'next/link';
 import DiscordLoginButton from '@/components/login/DiscordLoginButton';
+import GithubLoginButton from '@/components/login/GithubLoginButton';
+import GoogleLoginButton from '@/components/login/GoogleLoginButton';
 
 export const metadata = {
   title: 'Login | Next Core',
@@ -20,19 +22,14 @@ export default async function Login() {
     redirect('/');
   }
 
-
   return (
     <main className='min-h-screen flex flex-col gap-4 justify-center items-center p-4 md:p-24'>
       <h2 className='text-3xl font-bold text-center'>Log in to Next Core</h2>
       {/* Auth providers */}
       <div className='flex flex-col my-8 items-center gap-2 w-full max-w-[24rem]'>
-        <DiscordLoginButton/>
-        <button className='border-gray-100 border rounded-full py-3 w-full'>
-          Sign in with Github
-        </button>{' '}
-        <button className='border-gray-100 border rounded-full py-3 w-full'>
-          Sign in with Google
-        </button>
+        <DiscordLoginButton />
+        <GithubLoginButton />
+        <GoogleLoginButton />
       </div>
       <div className='bg-gradient-to-r from-green to-seablue w-full h-0.5 rounded-full max-w-[36rem]' />
 
