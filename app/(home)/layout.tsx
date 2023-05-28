@@ -1,7 +1,5 @@
-import './globals.css';
-import { Rubik } from 'next/font/google';
-
-const inter = Rubik({ subsets: ['latin'] });
+import Header from '@/components/home/Header';
+import Sidebar from '@/components/home/Sidebar';
 
 export const metadata = {
   title: 'Next Core ',
@@ -14,8 +12,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>{children}</body>
-    </html>
+    <main className='flex min-h-screen'>
+      <Sidebar />
+      <div className='flex flex-col flex-grow'>
+        <Header />
+        <div className='bg-neutral-900'>{children}</div>
+      </div>
+    </main>
   );
 }
