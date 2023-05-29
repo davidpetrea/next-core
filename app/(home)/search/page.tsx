@@ -5,7 +5,6 @@ const Search = () => {
   return (
     <div className='p-4'>
       <SearchContainer />
-      <div>Server prerendered stuff</div>
     </div>
   );
 };

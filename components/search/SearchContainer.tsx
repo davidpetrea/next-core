@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import SearchInput from './SearchInput';
 
 import { UsersResponseSuccess, getUsersByName } from '@/lib/supabase';
+import UserCard from './UserCard';
 
 const SearchContainer = () => {
   const [searchText, setSearchText] = useState('');
@@ -32,13 +33,13 @@ const SearchContainer = () => {
   return (
     <div>
       <SearchInput value={searchText} setSearchText={setSearchText} />
-      {!searchText && <div>List of default stuff</div>}
+      {!searchText && <div className='my-8'>List of default stuff</div>}
       {searchText && (
-        <ul>
+        <div className='grid grid-cols-2 xl:grid-cols-4 gap-4 my-8'>
           {users?.map((user) => (
-            <li key={user.id}>{user.name}</li>
+            <UserCard key={user.id} user={user} />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
