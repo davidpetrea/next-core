@@ -9,7 +9,7 @@ const GithubLoginButton = () => {
   const supabase = createClientComponentClient<Database>();
 
   const router = useRouter();
-  const signInWithDiscord = async () => {
+  const signInWithGithub = async () => {
     const { data } = await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
@@ -23,7 +23,7 @@ const GithubLoginButton = () => {
   };
   return (
     <button
-      onClick={signInWithDiscord}
+      onClick={signInWithGithub}
       className='border-gray-300 border rounded-full py-3 w-full hover:scale-105 hover:border-gray-100 transition-all duration-150 ease-linear'
     >
       <div className='flex justify-center gap-2'>
