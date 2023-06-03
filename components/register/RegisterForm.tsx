@@ -83,7 +83,6 @@ const RegisterForm = () => {
         placeholder='Enter your email...'
         error={errors?.email?.message?.toString()}
       />
-
       <TextField
         inputProps={{ ...register('password') }}
         id='password'

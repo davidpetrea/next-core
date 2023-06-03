@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { Database } from './schema';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-
+import supabaseClient from '@/lib/supabaseClient';
 type ElementType<T> = T extends (infer U)[] ? U : never;
 
 export const supabase = createClient<Database>(
@@ -14,16 +13,23 @@ export const supabase = createClient<Database>(
   }
 );
 
-export async function getUsersByName(searchValue: string) {
-  const client = createClientComponentClient<Database>();
+export async function getUserById(userId: string) {
+  const { data, error } = await supabase
+    .from('users')
+    .select('id,name,avatar_url')
+    .eq('id', userId)
+    .limit(1);
+  return { data, error };
+}
 
+export async function getUsersByName(searchValue: string) {
   //Get current user info
-  const { data } = await client.auth.getSession();
+  const { data } = await supabaseClient.auth.getSession();
 
   //Get all users that match searchValue except current user
   return await supabase
     .from('users')
-    .select('*')
+    .select('name,avatar_url,id')
     .neq('id', `${data.session?.user?.id}`)
     .ilike('name', `%${searchValue}%`)
     .limit(10);

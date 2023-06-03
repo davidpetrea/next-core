@@ -6,9 +6,9 @@ import Image from 'next/image';
 const UserCard = ({ user }: { user: User }) => {
   return (
     <Link href={`/profile/${user.id}`}>
-      <div className='bg-neutral-800 rounded-md p-4 flex flex-col items-center shadow-dp04'>
+      <div className='bg-neutral-900 hover:bg-neutral-800 rounded-md p-4 flex flex-col items-center shadow-dp04 transition-all duration-150 ease-in-out'>
         <Image
-          src={user.avatar_url}
+          src={user.avatar_url!}
           width={48}
           height={48}
           alt='Avatar'
